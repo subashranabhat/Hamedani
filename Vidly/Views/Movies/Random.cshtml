@@ -1,0 +1,52 @@
+﻿
+@using Vidly.Models
+@model Vidly.ViewModels.RandomMovieViewModel
+
+@{
+    ViewBag.Title = "Random";   //after creating a Action named  Random a view has to be created that should have a layout.
+    Layout = "~/Views/Shared/_Layout.cshtml"; //this layout is selected from Shared folder within Views and Layout.cshtml is selcted. It is the default one. It is the basically css code imported here for this page
+}
+
+
+@{
+    var className = Model.Customers.Count > 0 ? "popular" : null;  // if the count is  > 5 then it should be in class popular else it should be null
+}
+
+
+<h2 class="@className">@Model.Movie.Name </h2>   @* this is standard way of giving class indirectly . we could have just written class="popular and removed above code" *@
+
+
+
+@if (Model.Customers.Count == 0)
+{
+    <text> no one has rented this movie before.</text> // text is a special script that razor view can understand nd is not part of html
+}
+else
+{
+    <ul>
+
+        @foreach (var customer in Model.Customers) // the @ sign is used so that we could write c# code in this .cshtml file
+        {
+            <li>@customer.Name</li>  // because we are getting name from customers.
+        }
+    </ul>
+}
+
+
+
+
+@**@
+@*<ul>*@
+@*    @if (Model.Movie.Name == "Movie")*@
+@*    {*@
+@**@
+@*        foreach (var movie in Model.Movie) // the @ sign is used so that we could write c# code in this .cshtml file*@
+@*        {*@
+@*            <li>@movie.Name</li>  // because we are getting name from customers.*@
+@*        }*@
+@**@
+@*    }*@
+@*</ul>*@
+
+
+
